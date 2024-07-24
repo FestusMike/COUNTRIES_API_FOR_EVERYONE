@@ -6,7 +6,7 @@ class LocalGovernmentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = LocalGovernment
-        fields = ["id", "name"]
+        fields = ["name"]
 
 
 class StateSerializer(serializers.ModelSerializer):
@@ -14,7 +14,13 @@ class StateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = State
-        fields = ["id", "name", "capital", "local_governments"]
+        fields = ["name", "capital", "local_governments"]
+
+
+class CountryOnlySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Country
+        fields = ["name", "capital", "currency", "language"]
 
 
 class CountrySerializer(serializers.ModelSerializer):
@@ -22,7 +28,13 @@ class CountrySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Country
-        fields = ["id", "name", "capital", "currency", "states"]
+        fields = ["name", "capital", "currency", "language", "states"]
+
+
+class ContinentOnlySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Continent
+        fields = ["name"]
 
 
 class ContinentSerializer(serializers.ModelSerializer):
@@ -30,4 +42,4 @@ class ContinentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Continent
-        fields = ["id", "name", "countries"]
+        fields = ["name", "countries"]

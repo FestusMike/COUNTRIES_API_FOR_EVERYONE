@@ -1,5 +1,6 @@
 from django.db import models
 from utils.models import BaseModel
+
 # Create your models here.
 
 class Continent(BaseModel):
@@ -28,8 +29,8 @@ class Country(BaseModel):
 
 
 class State(BaseModel):
-    name = models.CharField(max_length=100, verbose_name="State Name or Region")
-    capital = models .CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=False, verbose_name="State Name or Region")
+    capital = models .CharField(max_length=100, unique=False, null=True)
     country = models.ForeignKey(Country, related_name='states', on_delete=models.CASCADE)
 
     def __str__(self):

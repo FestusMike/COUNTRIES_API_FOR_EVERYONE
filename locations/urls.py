@@ -9,6 +9,6 @@ urlpatterns = [
     path('continents/<str:continent_name>/countries', CountryListByContinentView.as_view(), name='fetching-countries-by-continent'),
     path('countries', CountryListAndSearchView.as_view(), name='fetching-all-countries-available-and-searching-for-a-particular-country'),
     path('countries/<str:country_name>/states', StateListByCountryView.as_view(), name='fetch-all-states-in-a-country'),
-    path('countries/<str:country_name>/', StateDetailByCountryView.as_view(), name='search-state-in-a-particular-country'),
+    path('countries/<str:country_name>', StateDetailByCountryView.as_view(), name='search-state-in-a-particular-country'),
     path('countries/<str:country_name>/states/<str:state_name>/local-governments', LocalGovernmentListByStateView.as_view(), name='get-all-local-governments-in-a-state'),
 ]

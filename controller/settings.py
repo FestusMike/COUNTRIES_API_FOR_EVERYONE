@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-7&69teggf+l8=jptss((daw$tqv(8_%&yg0$pll_nhf%xv3(b=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', ]
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "locations.apps.LocationsConfig",
+    "drf_spectacular",
 ]
 
 MIDDLEWARE = [
@@ -81,6 +82,33 @@ DATABASES = {
     }
 }
 
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Geographical Information API',
+    'DESCRIPTION': '''
+        
+    This API is developed by Micheal Arifajogun, a software engineer. It provides detailed information about countries, states (or equivalents), and local governments(or equivalents).
+        
+    You can search for countries, list states by country, and list local governments by state.
+        
+    Additionally, it includes spelling suggestion functionality for better user experience.
+        
+    For support, collaboration, suggestions and other reasons you may want to reach out, please contact me via email or whatsapp: festusmike98@gmail.com, +2348142968518
+    ''',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'SERVE_URLCONF': 'controller.urls',
+    'SWAGGER_UI_SETTINGS': {
+        'deepLinking': True,
+    },
+    'REDOC_UI_SETTINGS': {
+        'pathInMiddlePanel': True,
+        'hideDownloadButton': False,
+    },
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

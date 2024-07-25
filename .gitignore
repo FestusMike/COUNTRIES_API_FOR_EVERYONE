@@ -2,5 +2,6 @@
 */migrations/*
 db.sqlite3
 locations/nigerian-states.json
+locations/fixtures
 myenv/
 .env

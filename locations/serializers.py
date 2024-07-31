@@ -10,13 +10,14 @@ class LocalGovernmentSerializer(serializers.ModelSerializer):
 
 
 class StateSerializer(serializers.ModelSerializer):
+    
     local_governments = LocalGovernmentSerializer(many=True, read_only=True)
 
     class Meta:
         model = State
         fields = ["name", "capital", "local_governments"]
 
-
+    
 class CountryOnlySerializer(serializers.ModelSerializer):
     continent = serializers.SerializerMethodField()
 
@@ -26,6 +27,7 @@ class CountryOnlySerializer(serializers.ModelSerializer):
 
     def get_continent(self, obj):
         return obj.continent.name
+
 
 class CountrySerializer(serializers.ModelSerializer):
     states = StateSerializer(many=True, read_only=True)
@@ -37,6 +39,7 @@ class CountrySerializer(serializers.ModelSerializer):
 
     def get_continent(self, obj):
         return obj.continent.name
+
 
 class ContinentOnlySerializer(serializers.ModelSerializer):
     countries_count = serializers.SerializerMethodField()

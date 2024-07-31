@@ -274,6 +274,7 @@ class StateListByCountryView(generics.GenericAPIView):
         serializer = self.get_serializer(states, many=True)
         response_data = {
             "count": states.count(),
+            "country": country.name,
             "states": serializer.data
         }
         return Response(response_data)

@@ -18,23 +18,35 @@ class StateSerializer(serializers.ModelSerializer):
 
 
 class CountryOnlySerializer(serializers.ModelSerializer):
+    continent = serializers.SerializerMethodField()
+
     class Meta:
         model = Country
-        fields = ["name", "capital", "currency", "language"]
+        fields = ["continent", "name", "capital", "currency", "language"]
 
+    def get_continent(self, obj):
+        return obj.continent.name
 
 class CountrySerializer(serializers.ModelSerializer):
     states = StateSerializer(many=True, read_only=True)
+    continent = serializers.SerializerMethodField()
 
     class Meta:
         model = Country
-        fields = ["name", "capital", "currency", "language", "states"]
+        fields = ["continent", "name", "capital", "currency", "language", "states"]
 
+    def get_continent(self, obj):
+        return obj.continent.name
 
 class ContinentOnlySerializer(serializers.ModelSerializer):
+    countries_count = serializers.SerializerMethodField()
+
     class Meta:
         model = Continent
-        fields = ["name"]
+        fields = ["name", "countries_count"]
+
+    def get_countries_count(self, obj):
+        return obj.countries.count()  
 
 
 class ContinentSerializer(serializers.ModelSerializer):

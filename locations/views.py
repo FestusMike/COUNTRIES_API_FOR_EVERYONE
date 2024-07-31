@@ -38,7 +38,6 @@ class ContinentListView(generics.ListAPIView):
     queryset = Continent.objects.all()
     serializer_class = ContinentOnlySerializer
 
-
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
         serializer = self.get_serializer(queryset, many=True)
